@@ -3,6 +3,11 @@
     outline: 2px solid green;
 }
 
+.input-error {
+    outline: 2px solid red;
+    border-color: red;
+  }
+
 .search-input {
     outline: none;
     border: none;

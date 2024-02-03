@@ -174,10 +174,15 @@ function findBookIndex(bookId) {
 }
 
 function insertNewBook() {
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
+  const title = document.getElementById("title").value.trim();
+  const author = document.getElementById("author").value.trim();
   const year = document.getElementById("year").value;
   const isFinished = document.getElementById("been-read").checked;
+
+  if (title === "" || author === "" || year === "") {
+    alert("Harap isi semua field dengan tanda *");
+    return;
+  }
 
   // create a new book object
   const id = generateId();
