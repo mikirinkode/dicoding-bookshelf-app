@@ -19,4 +19,12 @@
   border-color: blue;
 }
 
+
+/* 640px / 16px = 40em */
+@media (max-width: 40em) {
+    article #bookshelf-layout {
+        flex-direction: column;
+    }
+}
+
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css')
