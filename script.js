@@ -21,6 +21,35 @@ document.addEventListener("DOMContentLoaded", function () {
   if (isStorageExist()) {
     loadDataFromStorage();
   }
+
+  const searchInput = document.getElementById("search-input");
+
+  // menambahkan event listener untuk 'keyup'
+  searchInput.addEventListener("keyup", function (event) {
+    // mendapatkan teks yang diketik oleh pengguna
+    let searchText = event.target.value;
+    console.log(searchText);
+    // jika ada karakter pada input, mulai mencari
+    if (searchText.length > 0) {
+      // mendapatkan data dari local storage
+      const serializedData = localStorage.getItem(STORAGE_KEY);
+      let data = JSON.parse(serializedData);
+
+      // mencari buku yang sesuai dengan teks yang diketik
+      let searchResult = data.filter(function (book) {
+        return book.title.toLowerCase().includes(searchText.toLowerCase());
+      });
+
+      bookList = searchResult;
+      document.dispatchEvent(new Event(RENDER_EVENT));
+
+      // menampilkan hasil pencarian
+      console.log(searchResult);
+    } else {
+      bookList = [];
+      loadDataFromStorage();
+    }
+  });
 });
 
 document.addEventListener(RENDER_EVENT, function () {
