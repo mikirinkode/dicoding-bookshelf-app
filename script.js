@@ -3,7 +3,9 @@ const RENDER_EVENT = "render-book";
 
 const SAVED_EVENT = "saved-book";
 const STORAGE_KEY = "BOOKSHELF_APP";
-let toast = document.getElementById("toast");
+const toast = document.getElementById("toast");
+const emptyMessage = document.getElementById("empty-bookshelf-message");
+const bookshelfContainer = document.getElementById("bookshelf-container");
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.getElementById("book-form");
@@ -99,6 +101,14 @@ document.addEventListener(SAVED_EVENT, function () {
   setTimeout(function () {
     toast.classList.add("hidden");
   }, 3000); // sembunyikan toast setelah 3 detik
+
+  if (bookList.length > 0) {
+    emptyMessage.classList.add("hidden");
+    bookshelfContainer.classList.remove("hidden");
+  } else {
+    bookshelfContainer.classList.add("hidden");
+    emptyMessage.classList.remove("hidden");
+  }
 });
 
 function saveData() {
@@ -119,6 +129,13 @@ function loadDataFromStorage() {
     for (const book of data) {
       bookList.push(book);
     }
+  }
+  if (bookList.length > 0) {
+    emptyMessage.classList.add("hidden");
+    bookshelfContainer.classList.remove("hidden");
+  } else {
+    bookshelfContainer.classList.add("hidden");
+    emptyMessage.classList.remove("hidden");
   }
 
   document.dispatchEvent(new Event(RENDER_EVENT));

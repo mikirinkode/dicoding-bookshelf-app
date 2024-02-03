@@ -106,7 +106,12 @@
         <hr />
       </section>
 
-      <article id="bookshelf-layout" class="flex gap-4 mt-4">
+      <div id="empty-bookshelf-message" class="hidden items-center justify-center w-full mx-auto text-center py-12 flex flex-col gap-1">
+        <h3 class="text-lg">Waduh kosong nih... 🤔</h3>
+        <p>Yuk segera tambahkan buku baru ke Rak Buku kamu.</p>
+      </div>
+
+      <article id="bookshelf-container" class="hidden flex gap-4 mt-4">
         <section
           id="unfinished"
           class="flex flex-1 flex-col gap-2 border rounded-lg p-2"

@@ -39,7 +39,7 @@
 
 /* 640px / 16px = 40em */
 @media (max-width: 40em) {
-    article #bookshelf-layout {
+    article #bookshelf-container {
         flex-direction: column;
     }
 }
