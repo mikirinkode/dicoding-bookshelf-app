@@ -31,21 +31,6 @@ function insertNewBook() {
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const submitForm = document.getElementById("book-form");
-  submitForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    addTodo();
-  });
-
-  const btnSubmit = document.getElementById("btn-submit");
-
-  btnSubmit.addEventListener("click", function (event) {
-    event.preventDefault();
-    insertNewBook();
-  });
-});
-
 function findBook(bookId) {
   for (const book of bookList) {
     if (book.id === bookId) {
@@ -53,6 +38,15 @@ function findBook(bookId) {
     }
   }
   return null;
+}
+
+function findBookIndex(bookId) {
+  for (const index in bookList) {
+    if (bookList[index].id === bookId) {
+      return index;
+    }
+  }
+  return -1;
 }
 
 function markBookAsFinished(bookId) {
@@ -66,6 +60,14 @@ function setBookToUnfinished(bookId) {
   const book = findBook(bookId);
   if (book == null) return;
   book.isFinished = false;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function removeBookFromList(bookId) {
+  const book = findBookIndex(bookId);
+  if (book === -1) return;
+
+  bookList.splice(book, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
@@ -158,6 +160,28 @@ function createBookCardElement(book) {
   deleteButton.innerHTML = "Hapus";
   deleteButton.className =
     "flex-1 border hover:border-red-500 hover:text-red-500 text-gray-400 text-sm font-medium py-1 px-2 rounded";
+  deleteButton.addEventListener("click", function () {
+    // removeBookFromList(book.id);
+    document
+      .getElementById("dialog-delete-confirmation")
+      .classList.remove("hidden");
+    document
+      .getElementById("btn-delete-confirmation")
+      .addEventListener("click", function () {
+        removeBookFromList(book.id);
+        document
+          .getElementById("dialog-delete-confirmation")
+          .classList.add("hidden");
+      });
+    document
+      .getElementById("btn-cancel-delete")
+      .addEventListener("click", function () {
+        document
+          .getElementById("dialog-delete-confirmation")
+          .classList.add("hidden");
+      });
+  });
+
   actionContainer.appendChild(positiveButton);
   actionContainer.appendChild(deleteButton);
 
@@ -169,6 +193,21 @@ function createBookCardElement(book) {
 
   return bookCardContainer;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const submitForm = document.getElementById("book-form");
+  submitForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    addTodo();
+  });
+
+  const btnSubmit = document.getElementById("btn-submit");
+
+  btnSubmit.addEventListener("click", function (event) {
+    event.preventDefault();
+    insertNewBook();
+  });
+});
 
 document.addEventListener(RENDER_EVENT, function () {
   console.log(bookList);
