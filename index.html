@@ -1,11 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <header>
+      <h1 class="text-3xl font-bold text-center my-10">Bookshelf App</h1>
+    </header>
+    <article class="bg-white rounded-lg border max-w-2xl m-10 p-5 mx-auto">
+      <section class="flex-col justify-between items-center">
+        <h2 class="text-xl font-bold mb-2">Form Buku Baru</h2>
+        <hr />
+      </section>
+      <form id="book-form">
+        <section class="input-layout">
+          <label for="title" class="block font-medium leading-6 text-gray-900"
+            >Judul <span class="text-red-600">*</span></label
+          >
+          <input
+            id="title"
+            type="text"
+            class="border rounded-lg p-2 w-full mt-2 input-field"
+            placeholder="Lorem Ipsum"
+            required
+          />
+        </section>
+
+        <section class="input-layout">
+          <label for="author" class="block font-medium leading-6 text-gray-900"
+            >Nama Penulis <span class="text-red-600">*</span></label
+          >
+          <input
+            id="author"
+            type="text"
+            class="border rounded-lg p-2 w-full mt-2 input-field"
+            placeholder="John Doe"
+            required
+          />
+        </section>
+
+        <section class="input-layout">
+          <label for="year" class="block font-medium leading-6 text-gray-900"
+            >Tahun Terbit <span class="text-red-600">*</span></label
+          >
+          <input
+            id="year"
+            type="number"
+            class="border rounded-lg p-2 w-full mt-2 input-field"
+            placeholder="2020"
+            required
+          />
+        </section>
+        <section class="input-layout flex items-center">
+          <label for="been-read" class="text-sm font-medium text-gray-500 mr-2"
+            >Tandai Sebagai Sudah Dibaca</label
+          >
+          <input
+            id="been-read"
+            name="been-read"
+            type="checkbox"
+            class="checkbox h-4 w-4 bg-green-500"
+          />
+        </section>
+        <button
+          id="btn-submit"
+          type="submit"
+          class="bg-green-600 hover:bg-green-500 hover:outline-2 text-white font-bold py-2 px-4 rounded mt-8"
+        >
+          Tambahkan Buku
+        </button>
+      </form>
+    </article>
+
+    <article
+      id="bookshelf"
+      class="bg-white rounded-lg border max-w-2xl m-10 p-5 mx-auto"
+    >
+      <section class="">
+        <div class="flex items-center justify-between w-full mb-4">
+          <h2 class="text-xl font-bold">📚 Rak Buku</h2>
+          <div
+            class="flex border rounded-lg my-auto ml-auto items-center py-2 px-1"
+          >
+            <i class="fi fi-rr-search ml-2 text-gray-400"></i>
+            <input
+              type="text"
+              class="search-input mx-2"
+              placeholder="Judul Buku"
+            />
+          </div>
+        </div>
+        <hr />
+      </section>
+
+      <article class="flex gap-4 mt-4">
+        <section
+          id="unfinished"
+          class="flex flex-1 flex-col gap-2 border rounded-lg p-2"
+        >
+          <section class="gap-2">
+            <h3 class="text-m mb-2 text-center">📖 Belum selesai dibaca</h3>
+            <hr />
+          </section>
+          <section class="book-list" id="unfinished-list"></section>
+          <!-- <div class="book-tile border rounded-lg p-4">
+            <section>
+              <p class="text-lg font-medium">
+                Cara berlatih untuk berpikir kritis
+              </p>
+              <div class="flex items-center">
+                <i class="fi fi-rr-user"></i>
+                <p>Muhammad Wafa</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fi fi-rr-calendar"></i>
+                <p>2020</p>
+              </div>
+            </section>
+          </div>
+          <div class="book-tile border rounded-lg p-4">
+            <section>
+              <p class="text-lg font-medium">
+                Cara berlatih untuk berpikir kritis
+              </p>
+              <div class="flex items-center">
+                <i class="fi fi-rr-user"></i>
+                <p>Muhammad Wafa</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fi fi-rr-calendar"></i>
+                <p>2020</p>
+              </div>
+            </section>
+          </div> -->
+        </section>
+
+        <section
+          id="finished"
+          class="flex flex-1 flex-col gap-2 border rounded-lg p-2"
+        >
+          <section class="gap-2">
+            <h3 class="text-m mb-2 text-center">📗 Selesai dibaca</h3>
+            <hr />
+          </section>
+          <section class="book-list" id="finished-list"></section>
+          <div class="book-card border rounded-lg p-2">
+            <span
+              class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400 mb-2"
+              >Selesai</span
+            >
+            <p class="font-medium mb-2">
+              Cara berlatih untuk berpikir kritis
+            </p>
+            <div class="flex items-center gap-2">
+              <i class="fi fi-rr-user"></i>
+              <p>Muhammad Wafa</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fi fi-rr-calendar"></i>
+              <p>2020</p>
+            </div>
+            <div class="flex gap-2 items-center mt-4">
+              <button
+                id="btn-read-again"
+                class="flex-1 border hover:border-green-500 hover:text-green-500 text-gray-400 text-sm font-medium py-1 px-2 rounded"
+              >
+                Baca Lagi
+              </button>
+              <button
+                id="btn-read-again"
+                class="flex-1 border hover:border-red-500 hover:text-red-500 text-gray-400 text-sm font-medium py-1 px-2 rounded"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </section>
+      </article>
+    </article>
+    <script src="script.js" type="text/javascript"></script>
+  </body>
 </html>
