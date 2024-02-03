@@ -126,66 +126,15 @@
             <hr />
           </section>
           <section class="book-list" id="finished-list"></section>
-          <div class="book-card border rounded-lg p-2">
-            <span
-              class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400 mb-2"
-              >Selesai</span
-            >
-            <p class="font-medium mb-2">
-              Cara berlatih untuk berpikir kritis
-            </p>
-            <div class="flex items-center gap-2">
-              <i class="fi fi-rr-user"></i>
-              <p>Muhammad Wafa</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fi fi-rr-calendar"></i>
-              <p>2020</p>
-            </div>
-            <div class="flex gap-2 items-center mt-4">
-              <button
-                id="btn-read-again"
-                class="flex-1 border hover:border-green-500 hover:text-green-500 text-gray-400 text-sm font-medium py-1 px-2 rounded"
-              >
-                Baca Lagi
-              </button>
-              <button
-                id="btn-read-again"
-                class="flex-1 border hover:border-red-500 hover:text-red-500 text-gray-400 text-sm font-medium py-1 px-2 rounded"
-              >
-                Hapus
-              </button>
-            </div>
-          </div>
         </section>
       </article>
     </article>
 
     <div id="dialog-delete-confirmation" class="hidden relative z-10" aria-labelledby="dialog-delete-confirmation" role="dialog" aria-modal="true">
-        <!--
-          Background backdrop, show/hide based on modal state.
-      
-          Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <!--
-              Modal panel, show/hide based on modal state.
-      
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
             <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">
