@@ -3,6 +3,7 @@ const RENDER_EVENT = "render-book";
 
 const SAVED_EVENT = "saved-book";
 const STORAGE_KEY = "BOOKSHELF_APP";
+let toast = document.getElementById("toast");
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.getElementById("book-form");
@@ -39,6 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
       let searchResult = data.filter(function (book) {
         return book.title.toLowerCase().includes(searchText.toLowerCase());
       });
+
+      // jika hasil pencarian kosong, tampilkan toast
+      if (searchResult.length === 0) {
+        toast.innerHTML = "Tidak ada data yang cocok.";
+        toast.classList.remove("hidden");
+        setTimeout(function () {
+          toast.classList.add("hidden");
+        }, 3000); // sembunyikan toast setelah 3 detik
+      } else {
+        // jika ada hasil pencarian, sembunyikan toast
+        toast.classList.add("hidden");
+      }
 
       bookList = searchResult;
       document.dispatchEvent(new Event(RENDER_EVENT));
@@ -80,7 +93,12 @@ function isStorageExist() /* boolean */ {
 }
 
 document.addEventListener(SAVED_EVENT, function () {
-  console.log(localStorage.getItem(STORAGE_KEY));
+  // tampilkan toast
+  toast.innerHTML = "Data terbaru berhasil disimpan.";
+  toast.classList.remove("hidden");
+  setTimeout(function () {
+    toast.classList.add("hidden");
+  }, 3000); // sembunyikan toast setelah 3 detik
 });
 
 function saveData() {
